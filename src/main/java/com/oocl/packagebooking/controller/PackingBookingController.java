@@ -23,8 +23,15 @@ public class PackingBookingController {
     }
 
     @PostMapping
-    public PackageEnwrap addPackingEnwrap(@RequestBody PackageEnwrap packageEnwrap){
+    public PackageEnwrap addPackageEnwrap(@RequestBody PackageEnwrap packageEnwrap){
         return packageBookingService.savePackingEnwrap(packageEnwrap);
+    }
+
+    @PutMapping
+    public int updatePackageEnwrap(@RequestBody PackageEnwrap packageEnwrap){
+        if(packageEnwrap == null || packageEnwrap.getOrderId() == null)
+            return 0;
+        return packageBookingService.updatePackageEnwrapStatusByOrderId(packageEnwrap.getOrderId(), packageEnwrap.getOrderStatus());
     }
 
 }
