@@ -23,4 +23,8 @@ public class PackageBookingService {
     public PackageEnwrap savePackingEnwrap(PackageEnwrap packingEnwrap) {
         return packingBookingRepository.save(packingEnwrap);
     }
+
+    public int updatePackageEnwrapStatusByOrderId(Long orderId, int status) {
+        return packingBookingRepository.updatePackageEnwrapStatusByOrderId(orderId,status);
+    }
 }

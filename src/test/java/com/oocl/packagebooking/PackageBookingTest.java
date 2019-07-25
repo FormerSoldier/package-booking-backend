@@ -46,4 +46,15 @@ public class PackageBookingTest {
 
         Assertions.assertEquals(packageEnwrapList.size(),1);
     }
+
+    @Test
+    public void should_return_affect_rows_count_when_call_update_package_enwrap_status_given_order_id_and_status(){
+        PackageEnwrap packingEnwrap = new PackageEnwrap("李亚娥","18912345678");
+        PackageEnwrap result_packingEnwrap = packageBookingService.savePackingEnwrap(packingEnwrap);
+
+        int rows = packageBookingService.updatePackageEnwrapStatusByOrderId(packingEnwrap.getOrderId(),1);
+
+        Assertions.assertEquals(rows,1);
+
+    }
 }

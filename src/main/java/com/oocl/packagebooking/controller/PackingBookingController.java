@@ -16,8 +16,10 @@ public class PackingBookingController {
     PackageBookingService packageBookingService;
 
     @GetMapping
-    public List<PackageEnwrap> listAllPackageEnwrap(@RequestParam(required = false) int filterType){
-        return packageBookingService.findAllPackageEnwrap();
+    public List<PackageEnwrap> listAllPackageEnwrap(@RequestParam(required = false) Integer filterType){
+        if(filterType == null)
+            return packageBookingService.findAllPackageEnwrap();
+        return packageBookingService.findPackageEnwrapByStatus(filterType);
     }
 
     @PostMapping
