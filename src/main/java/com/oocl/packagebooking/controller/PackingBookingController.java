@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/package-bookings")
 public class PackingBookingController {
@@ -32,6 +33,11 @@ public class PackingBookingController {
         if(packageEnwrap == null || packageEnwrap.getOrderId() == null)
             return 0;
         return packageBookingService.updatePackageEnwrapStatusByOrderId(packageEnwrap.getOrderId(), packageEnwrap.getOrderStatus());
+    }
+
+    @PutMapping("/appointment")
+    public PackageEnwrap updatePackageEnwrapAppointmentTime(@RequestBody PackageEnwrap packageEnwrap){
+        return packageBookingService.updatePackageEnwrapAppointmentTime(packageEnwrap);
     }
 
 }

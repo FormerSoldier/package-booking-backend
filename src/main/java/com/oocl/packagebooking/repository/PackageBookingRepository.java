@@ -16,5 +16,6 @@ public interface PackageBookingRepository extends JpaRepository<PackageEnwrap, L
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE package_enwrap SET order_status = :status WHERE order_id = :id", nativeQuery = true)
-    public int updatePackageEnwrapStatusByOrderId(@Param("status") Long status,@Param("id") int id);
+    public int updatePackageEnwrapStatusByOrderId(@Param("id") Long id,@Param("status") int status);
+
 }
