@@ -17,22 +17,25 @@ public class PackingBookingController {
     PackageBookingService packageBookingService;
 
     @GetMapping
-    public List<PackageEnwrap> listAllPackageEnwrap(@RequestParam(required = false) Integer filterType){
-        if(filterType == null)
+    public List<PackageEnwrap> listAllPackageEnwrap(@RequestParam(required = true) Integer filterType){
+        System.out.println(filterType);
+        if(filterType == null || filterType == 1)
             return packageBookingService.findAllPackageEnwrap();
         return packageBookingService.findPackageEnwrapByStatus(filterType);
     }
 
     @PostMapping
     public PackageEnwrap addPackageEnwrap(@RequestBody PackageEnwrap packageEnwrap){
+        System.out.println(packageEnwrap);
         return packageBookingService.savePackingEnwrap(packageEnwrap);
     }
 
     @PutMapping
-    public int updatePackageEnwrap(@RequestBody PackageEnwrap packageEnwrap){
-        if(packageEnwrap == null || packageEnwrap.getOrderId() == null)
-            return 0;
-        return packageBookingService.updatePackageEnwrapStatusByOrderId(packageEnwrap.getOrderId(), packageEnwrap.getOrderStatus());
+    public List<PackageEnwrap> updatePackageEnwrap(@RequestBody PackageEnwrap packageEnwrap){
+        System.out.println("update"+packageEnwrap);
+       if(packageEnwrap != null && packageEnwrap.getOrderId() != null)
+            packageBookingService.updatePackageEnwrapStatusByOrderId(packageEnwrap.getOrderId(), packageEnwrap.getOrderStatus());
+        return listAllPackageEnwrap(packageEnwrap.getOrderStatus());
     }
 
     @PutMapping("/appointment")

@@ -16,7 +16,6 @@ public class PackageEnwrap {
     @Id
     private Long orderId;
     private String recipientsName;
-    @Length(min = 11, max = 11)
     private String telPhone;
 
     private int orderStatus;
